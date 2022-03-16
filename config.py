@@ -1,11 +1,12 @@
 import os
+import base64
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-TOKEN = os.getenv("TOKEN")
-admin_id = os.getenv("ADMIN_ID")
-host = os.getenv("PGHOST")
-PG_USER = os.getenv("PG_USER")
-PG_PASS = os.getenv("PG_PASS")
+TOKEN = base64.b64decode(os.getenv("TOKEN")).decode("utf-8")
+admin_id = base64.b64decode(os.getenv("ADMIN_ID")).decode("utf-8")
+host = base64.b64decode(os.getenv("PGHOST")).decode("utf-8")
+PG_USER = base64.b64decode(os.getenv("PG_USER")).decode("utf-8")
+PG_PASS = base64.b64decode(os.getenv("PG_PASS")).decode("utf-8")

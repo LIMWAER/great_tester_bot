@@ -1,5 +1,6 @@
 .env
 secret.yaml
+__pycache__/
 /venv/
 .idea/
 kompose.exe
