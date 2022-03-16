@@ -1,5 +1,5 @@
 .env
 secret.yaml
-.venv/
+/venv/
 .idea/
 kompose.exe
