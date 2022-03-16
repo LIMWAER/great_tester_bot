@@ -1,0 +1,5 @@
+.env
+secret.yaml
+.venv/
+.idea/
+kompose.exe
