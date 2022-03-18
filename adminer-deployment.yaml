@@ -1,33 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
+  name : adminer-deployment
   labels:
-    io.kompose.service: adminer
-  name: adminer
+   name : adminer
+   owner: limwaer
+   env  : dotenv
+   app  : bot-app-deployment
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: adminer
-  strategy: {}
+      project: bot
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
-        io.kompose.service: adminer
-    spec:
-      containers:
-        - image: adminer
-          name: adminer
-          ports:
-            - containerPort: 8080
-          resources: {}
+        project: bot
+  spec:
+    containers:
+      - image: adminer
+        name: adminer
+        ports:
+          - containerPort: 8080
       restartPolicy: Always
-status: {}

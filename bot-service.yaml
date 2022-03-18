@@ -3,8 +3,10 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
+      kompose.version: 1.26.0 (40646f47)
+      owner: limwaer
+      env: dotenv
+  creationTimestamp   : null
   labels:
     io.kompose.service: bot
   name: bot

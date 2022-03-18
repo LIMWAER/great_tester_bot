@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name : db-with-bot-deployment
+  labels:
+   name : botinok
+   owner: limwaer
+   env  : dotenv
+   app  : bot-app-deployment
+spec:
+  selector:
+    matchLabels:
+      project: bot
+  template:
+    metadata:
+      labels:
+        project: bot
+  spec:
+    containers:
+      - name: bot-backend
+        image: limwaer/great-tester-bot:2.0
+        ports:
+          - containerPort: 7777
+        workingDir: /app
+      - name : bot-db
+        image: postgres
+        ports:
+          - containerPort: 5432
+      - env:
+          - name: ADMIN_ID
+            valueFrom:
+              secretKeyRef:
+                key: ADMIN_ID
+                name: pg-secret
+          - name: PGHOST
+            valueFrom:
+              secretKeyRef:
+                key: PGHOST
+                name: pg-secret
+          - name: PG_PASS
+            valueFrom:
+              secretKeyRef:
+                key: PG_PASS
+                name: pg-secret
+          - name: PG_USER
+            valueFrom:
+              secretKeyRef:
+                key: PG_USER
+                name: pg-secret
+          - name: TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: TOKEN
+                name: pg-secret
+          - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                name: pg-secret
+                key: POSTGRES_PASSWORD
+    restartPolicy: Always

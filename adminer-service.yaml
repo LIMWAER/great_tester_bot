@@ -1,23 +1,20 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
+  name : adminer-service
   labels:
-    io.kompose.service: adminer
-  name: adminer
+   name : adminer
+   owner: limwaer
+   env  : dotenv
+   app  : bot-app-deployment
 spec:
-  type:
-    LoadBalancer
-  ports:
-    - name: "8080"
-      port: 8080
-      targetPort: 8080
   selector:
-    io.kompose.service: adminer
-status:
-#TODO: check status for load balancer
-  loadBalancer: {}
+    project: bot
+  ports:
+    - name      : adminer-listener
+      protocol  : TCP
+      port      : 8080
+      targetPort: 8080
+  type: LoadBalancer
+
 
