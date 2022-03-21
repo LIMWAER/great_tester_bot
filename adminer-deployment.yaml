@@ -17,8 +17,8 @@ spec:
         project: bot
   spec:
     containers:
-      - image: adminer
-        name: adminer
+      - name: adminer
+        image: adminer
         ports:
           - containerPort: 8080
-      restartPolicy: Always
+    restartPolicy: Always
